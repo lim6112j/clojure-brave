@@ -6,9 +6,11 @@
 (def aHashMap (hash-map :a 1 :b 2))
 (def aHashSet (hash-set :a :b :a))
 (defn adds100
+  "adds 100 function"
   [x]
   (+ 100 x))
 (defn dec-maker
+  "decrementer maker"
   [x]
   #(- % x))
 (defn mapset
