@@ -14,4 +14,5 @@
   (println "adds 100 3" (adds100 3))
   (println "dec 9 from 10" (dec9 10))
   (println "mapset inc [1, 1, 2,2]" (mapset inc [1 1 2 2]))
+  (println "titleize : " (map titleize '("Empathy", "Decoration") ))
   )
