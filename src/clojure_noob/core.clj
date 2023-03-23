@@ -1,7 +1,8 @@
 (ns clojure-noob.core
-  (:gen-class))
+  (:gen-class) 
+  (:require
+   [clojure-noob.ch4.exercise :refer [titleize]]))
 (use 'clojure-noob.ch3.exercise)
-
 (def dec9 (dec-maker 9))
 (defn -main
   "I don't do a whole lot ... yet."

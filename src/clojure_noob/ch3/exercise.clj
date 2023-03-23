@@ -39,6 +39,3 @@
 (defn mapset
   [f x]
   (set (map f x)))
-(defn titleize
-  [topic]
-  (str topic " for the Brave and True"))
