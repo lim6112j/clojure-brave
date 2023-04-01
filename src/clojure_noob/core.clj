@@ -1,7 +1,8 @@
 (ns clojure-noob.core
-  (:gen-class) 
+  (:gen-class)
   (:require
-   [clojure-noob.ch4.exercise :refer [titleize]]))
+   [clojure-noob.ch4.exercise :refer [titleize]]
+   [clojure-noob.ch5.exercise :refer [year-end-evaluation sum]]))
 (use 'clojure-noob.ch3.exercise)
 (def dec9 (dec-maker 9))
 (defn -main
@@ -16,4 +17,5 @@
   (println "dec 9 from 10" (dec9 10))
   (println "mapset inc [1, 1, 2,2]" (mapset inc [1 1 2 2]))
   (println "titleize : " (map titleize '("Empathy", "Decoration") ))
+  (year-end-evaluation)
   )
