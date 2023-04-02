@@ -3,7 +3,8 @@
   (:require
    [clojure-noob.ch4.exercise :refer [titleize]]
    [clojure-noob.ch5.exercise :refer [year-end-evaluation sum]]
-   [clojure-noob.ch11.exercise]))
+   [clojure-noob.ch11.exercise]
+   [clojure-noob.ch9.exercise]))
 (use 'clojure-noob.ch3.exercise)
 (def dec9 (dec-maker 9))
 (defn -main
