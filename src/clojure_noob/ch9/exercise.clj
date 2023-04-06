@@ -6,3 +6,4 @@
                      (+ 1 1))]
   (println "deref: " (deref result))
   (println "@: " @result))
+(deref (future (Thread/sleep 1000) 0) 10 5)
