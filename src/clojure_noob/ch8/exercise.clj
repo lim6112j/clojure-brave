@@ -23,3 +23,15 @@
         'result))
 (println (list '+ 1 (inc 1))) ; normal quote
 (println `(+ 1 ~(inc 1))) ;syntax quote
+(defmacro code-critic
+  "Pharases are courtesy hermes conrand from futurama"
+  [bad good]
+  (list 'do
+        (list 'println
+              "Greate sqid of madrid, this is bad code:"
+              (list 'quote bad))
+        (list 'println
+              "Sweet gorilla of Manila, this is good code!"
+              (list 'quote good))))
+(code-critic #_{:clj-kondo/ignore [:not-a-function]}
+ (1 + 1) (+ 1 1))
