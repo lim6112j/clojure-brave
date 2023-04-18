@@ -6,13 +6,13 @@
 (defmacro infix-2
   [[operand1 op operand2]]
   (list op operand1 operand2))
-(defmacro and
-  {:added "1.0"}
-  ([] true)
-  ([x] x)
-  ([x & next]
-   `(let [and# ~x]
-      (if and# (and ~@next) and#))))
+; (defmacro and
+;   {:added "1.0"}
+;   ([] true)
+;   ([x] x)
+;   ([x & next]
+;    `(let [and# ~x]
+;       (if and# (and ~@next) and#))))
 ; (let [result expression]
 ;   (println result)
 ;   result)
