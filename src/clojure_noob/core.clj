@@ -4,9 +4,9 @@
    ; [clojure-noob.ch4.exercise :refer [titleize]]
    ; [clojure-noob.ch5.exercise :refer [year-end-evaluation sum]]
    ; [clojure-noob.ch11.exercise]
+   [clojure-noob.ch8.exercise :refer [infix infix-2 my-print]]
    [clojure-noob.ch9.exercise]))
-(use 'clojure-noob.ch3.exercise)
-(def dec9 (dec-maker 9))
+; (def dec9 (dec-maker 9))
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]

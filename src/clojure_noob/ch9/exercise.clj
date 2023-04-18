@@ -50,3 +50,46 @@
   (and (<= (:price butter) 100)
        (>= (:smoothness butter) 97)
        butter))
+; (time (some (comp satisfactory? mock-api-call)
+;             [yak-butter-international butter-than-nothing baby-got-yak]))
+
+; (time
+;  (let [butter-promise (promise)]
+;    (doseq [butter [yak-butter-international butter-than-nothing baby-got-yak]]
+;      (future (if-let [satisfactory-butter (satisfactory? (mock-api-call butter))]
+;                (deliver butter-promise satisfactory-butter))))
+;    (println "And the winner is:" (deref butter-promise 1000 "timeout"))))
+; (let [ferengi-wisdom-promise (promise)]
+;   (future (println "Here's some Ferengi wisdom:" (deref ferengi-wisdom-promise 1000 "timeout")))
+;   (Thread/sleep 100)
+;   (deliver ferengi-wisdom-promise "Whisper your way to success"))
+(defmacro wait
+  "Sleep `timeout` seconds before evaluating body"
+  [timeout & body]
+  `(do (Thread/sleep ~timeout) ~@body))
+; (let [saying3 (promise)]
+;   (future (deliver saying3 (wait 100 "Cheerio!")))
+;   @(let [saying2 (promise)]
+;      (future (deliver saying2 (wait 400 "Pip pip!")))
+;      @(let [saying1 (promise)]
+;         (future (deliver saying1 (wait 200 "'Ello, gov'nal!")))
+;         (println @saying1)
+;         saying1)
+;      (println @saying2)
+;      saying2)
+;   (println @saying3)
+;   saying3)
+(defmacro enqueue
+  ([q concurrent-promise-name concurrent serialized]
+   `(let [~concurrent-promise-name (promise)]
+      (future (deliver ~concurrent-promise-name ~concurrent))
+      (deref ~q)
+      ~serialized
+      ~concurrent-promise-name))
+
+  ([concurrent-promise-name concurrent serialized]
+   `(enqueue (future) ~concurrent-promise-name ~concurrent ~serialized)))
+
+; (-> (enqueue saying (wait 200 "'Ello, gov'na!") (println @saying))
+;     (enqueue saying (wait 400 "Pip pip!") (println @saying))
+;     (enqueue saying (wait 100 "Cheerio!") (println @saying)))
