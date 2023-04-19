@@ -47,9 +47,14 @@
 ;  (1 + 1) (+ 1 1))
 
 (def message "Good Job")
+; (defmacro with-mischief
+;   [& stuff-to-do]
+;   (concat (list 'let ['message "oh, big deal"])
+;           stuff-to-do))
 (defmacro with-mischief
   [& stuff-to-do]
-  (concat (list 'let ['message "oh, big deal"])
-          stuff-to-do))
+  `(let [message# "hello"]
+     ~@stuff-to-do
+     (println "I still need to say : " message#)))
 (with-mischief
   (println "Here's how I feel about that thing you did: " message))
