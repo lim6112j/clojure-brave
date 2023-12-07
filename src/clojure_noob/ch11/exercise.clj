@@ -3,7 +3,7 @@
 (defn upload
   [headshot c]
   (a/go (Thread/sleep (rand 100))
-      (a/>! c headshot)))
+        (a/>! c headshot)))
 (let [c1 (a/chan)]
   (upload "serious.jpg" c1)
   (let [[headshot channel] (a/alts!! [c1 (a/timeout 10)])]
@@ -16,3 +16,6 @@
   (let [[value channel] (a/alts!! [c1 [c2 "put!"]])]
     (println value)
     (= channel c2)))
+(defn -main
+  "main"
+  [& args])

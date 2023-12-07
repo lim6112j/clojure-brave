@@ -3,9 +3,10 @@
   (:require
    ; [clojure-noob.ch4.exercise :refer [titleize]]
    ; [clojure-noob.ch5.exercise :refer [year-end-evaluation sum]]
-   ; [clojure-noob.ch11.exercise]
+   [clojure-noob.ch11.exercise]
    [clojure-noob.ch8.exercise :refer [infix infix-2 my-print code-critic]]
-   [clojure-noob.ch9.exercise]))
+   ; [clojure-noob.ch9.exercise]
+   ))
 ; (def dec9 (dec-maker 9))
 (defn -main
   "I don't do a whole lot ... yet."
