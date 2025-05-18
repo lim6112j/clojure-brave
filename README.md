@@ -6,11 +6,9 @@ FIXME: description
 
 Download from http://example.com/FIXME.
 
-## Usage
+## how to run : use namespace
 
-FIXME: explanation
-
-    $ java -jar clojure-noob-0.1.0-standalone.jar [args]
+$ lein run -m clojure-noob.ch11.exercise2
 
 ## Options
 
