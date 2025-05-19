@@ -2,11 +2,11 @@
   (:require [clojure.core.async :as a]))
 (defn upload
   [headshot c]
-  (a/go (Thread/sleep (rand 100))
+  (a/go (Thread/sleep (int (rand 100)))
         (a/>! c headshot)))
 (let [c1 (a/chan)]
   (upload "serious.jpg" c1)
-  (let [[headshot channel] (a/alts!! [c1 (a/timeout 10)])]
+  (let [[headshot channel] (a/alts!! [c1 (a/timeout 1000)])]
     (if headshot
       (println "Sending headshot notification for" headshot)
       (println "Timed out!"))))
