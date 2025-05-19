@@ -93,3 +93,15 @@
 ; (-> (enqueue saying (wait 200 "'Ello, gov'na!") (println @saying))
 ;     (enqueue saying (wait 400 "Pip pip!") (println @saying))
 ;     (enqueue saying (wait 100 "Cheerio!") (println @saying)))
+(defn -main
+  "main"
+  [& args]
+  ; (time (some (comp satisfactory? mock-api-call)
+  ;             [yak-butter-international butter-than-nothing baby-got-yak]))
+  (time
+   (let [butter-promise (promise)]
+     (doseq [butter [yak-butter-international butter-than-nothing baby-got-yak]]
+       (future (if-let [satisfactory-butter (satisfactory? (mock-api-call butter))]
+                 (deliver butter-promise satisfactory-butter))))
+     (println "And the winner is:" (deref butter-promise 1000 "timeout"))))
+  (println "done"))
