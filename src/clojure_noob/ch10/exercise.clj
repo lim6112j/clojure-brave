@@ -1,13 +1,24 @@
 (ns clojure-noob.ch10.exercise)
+(def fred (atom {:cuddle-hunger-level 0
+                 :percent-deteriorated 0}))
+(let [zombie-state @fred]
+  (if (>= (:percent-deteriorated zombie-state) 50)
+    (future (println (:percent-deteriorated zombie-state)))))
+(swap! fred
+       (fn [current-state]
+         (merge-with + current-state {:cuddle-hunger-level 1 :percent-deteriorated 1})))
+(defn increase-cuddle-hunger-level
+  [zombie-state increasy-by]
+  (merge-with + zombie-state {:cuddle-hunger-level increasy-by}))
 
-class CuddleZombie:
-#attr_accessor is just a shorthand way for creating getters and
-#setters for the listed instance variables
-attr_accessor :cuddle_hunger_level, :percent_deteriorated
+; this doesn't update fred state beacause it's not using swap! or reset! to update the atom
+(increase-cuddle-hunger-level @fred 1)
+; this updates fred state
+(swap! fred increase-cuddle-hunger-level 1)
+; built in update function instead of increase-cuddle-hunger-level
+(update-in {:a {:b 2}} [:a :b] inc)
+; => {:a {:b 3}}
+(update-in {:a {:b 3}} [:a :b] + 10)
+; => {:a {:b 13}}
 
-def initialize (cuddle_hunter_level = 1, percent_deteriorated = 0):
-self.cuddle_hunger_level = cuddle_hunter_level
-self.percent_deteriorated = percent_deteriorated
-end
-end
-
+(swap! fred update-in [:cuddle-hunger-level] inc)
