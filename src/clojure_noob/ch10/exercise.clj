@@ -80,7 +80,11 @@
   (filter #(= (:variety %) (:variety target-sock)) sock-set))
 (def sock-gnome (ref (generate-sock-gnome "Gnorman")))
 (def dryer (ref {:name "LG 1337" :socks (set (map #(sock-count % 2) sock-varieties))}))
-
+(def ^:dynamic *notification-address* "dobby@elf.org")
+(defn notify
+  [message]
+  (str "To: " *notification-address* "\n"
+       "MESSAGE: " message))
 (defn -main
   "main"
   [& args]
@@ -92,5 +96,9 @@
   (println (:socks @dryer))
   (steal-sock sock-gnome dryer)
   (println "Gnorman's socks:" (:socks @sock-gnome))
-  (println (similar-socks (first (:socks @sock-gnome)) (:socks @dryer))))
+  (println (similar-socks (first (:socks @sock-gnome)) (:socks @dryer)))
+  (notify "I fell.")
+  (binding [*notification-address* "test@elf.org"]
+    (notify "test!"))
+  (.write *out* "prints to repl"))
 
